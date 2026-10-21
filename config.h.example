@@ -1,0 +1,59 @@
+// Compile-time configuration for AstronautClock_Prism.
+//
+// Copy this file to config.h and edit the values:
+//
+//     cp config.h.example config.h
+//
+// config.h is git-ignored, so your WiFi credentials and API key never end up in
+// the repository. This template stays in git and is safe to share.
+//
+// Every value defined here has a fallback in the sketch, so a missing config.h
+// still compiles and runs with the vendor defaults.
+
+#pragma once
+
+// ---------------- WiFi ----------------
+// 2.4 GHz network only, the ESP32-S3 has no 5 GHz radio.
+#define WIFI_SSID "spotpear"
+#define WIFI_PASSWORD "12345678"
+
+// ---------------- Weather ----------------
+// OpenWeatherMap API key, free of charge at https://openweathermap.org/api
+// The key below is the public one shipped with the vendor firmware. It is
+// shared by every buyer of this board and often rate limited, replace it.
+#define WEATHER_API_KEY "fbf5a0e942e6fea3ff18103b9fd46ed9"
+
+// 1 = detect the city from the public IP address (ip-api.com)
+// 0 = use CITY_CODE below
+#define CITY_AUTO_DETECT 1
+
+// City name for OpenWeatherMap when CITY_AUTO_DETECT is 0, for example
+// "Berlin,de" or "Shanghai,cn". The numeric ids in CityCode/citycode.json
+// belong to a Chinese weather service and do not work with the q= query this
+// sketch sends.
+#define CITY_CODE "101020100"
+
+// ---------------- Time ----------------
+// NTP server the clock syncs against
+#define NTP_SERVER "time.nist.gov"
+// Resync interval in minutes
+#define NTP_SYNC_MINUTES 20
+
+// ---------------- Time zone ----------------
+// 0 = use the UTC offset that OpenWeatherMap reports for the detected city.
+//     Correct while the weather request succeeds, but the clock falls back to
+//     UTC as soon as that request fails (expired or rate limited API key).
+// 1 = use the fixed standard offset below plus the European summer time rule.
+#define TIMEZONE_SOURCE 1
+
+// Standard (winter) UTC offset in hours, decimals allowed.
+// Germany = 1 (CET). Summer time adds one hour on top.
+#define TIMEZONE_STD_OFFSET_HOURS 1
+
+// 1 = observe European summer time (last Sunday in March to the last Sunday in
+//     October), 0 = keep the standard offset all year
+#define TIMEZONE_EU_DST 1
+
+// ---------------- Display ----------------
+// Text in the top-right corner
+#define FOLLOWER_TEXT "Hello"

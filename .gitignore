@@ -1,0 +1,9 @@
+.pio/
+.vscode/
+*.bin
+# PlatformIO's ino2cpp output carries absolute paths; never commit it.
+*.ino.cpp
+
+# Local device configuration with WiFi credentials and the API key.
+# Only the tracked template config.h.example belongs in the repository.
+/config.h
